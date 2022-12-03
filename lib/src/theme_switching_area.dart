@@ -1,6 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'provider.dart';
 import 'theme_clipper.dart';
@@ -22,7 +21,9 @@ class ThemeSwitchingArea extends ConsumerWidget {
     if (!themeConfig.didEverChange) {
       child = _getPage(themeConfig.theme);
     } else {
-      late final Widget firstWidget, animWidget;
+      late final Widget firstWidget;
+      late final Widget animWidget;
+
       if (themeConfig.isReversed) {
         firstWidget = _getPage(themeConfig.theme);
         animWidget = RawImage(image: themeConfig.screenShot);

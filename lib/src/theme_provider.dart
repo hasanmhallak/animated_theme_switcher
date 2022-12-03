@@ -57,13 +57,15 @@ class _ThemeProviderState extends State<ThemeProvider>
   Widget build(BuildContext context) {
     return UncontrolledProviderScope(
       container: widget.container ?? ProviderContainer(),
-      child: Consumer(builder: (context, ref, _) {
-        final themeConfig = ref.watch(themeProvider);
-        return RepaintBoundary(
-          key: themeConfig.screenShotKey,
-          child: widget.builder(context, themeConfig.theme),
-        );
-      }),
+      child: Consumer(
+        builder: (context, ref, _) {
+          final themeConfig = ref.watch(themeProvider);
+          return RepaintBoundary(
+            key: themeConfig.screenShotKey,
+            child: widget.builder(context, themeConfig.theme),
+          );
+        },
+      ),
     );
   }
 }

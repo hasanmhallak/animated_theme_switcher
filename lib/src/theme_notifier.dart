@@ -1,6 +1,7 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'dart:ui' as ui;
 
 class ThemeConfig extends ChangeNotifier {
   late final AnimationController controller;
@@ -13,7 +14,7 @@ class ThemeConfig extends ChangeNotifier {
   late bool isReversed;
   bool didEverChange = false;
 
-  Offset switcherOffset = const Offset(0, 0);
+  Offset switcherOffset = Offset.zero;
 
   late final GlobalKey screenShotKey;
   late final GlobalKey switcherKey;
@@ -72,6 +73,7 @@ class ThemeConfig extends ChangeNotifier {
   }
 
   Future<void> _saveScreenshot(GlobalKey screenShotKey) async {
+    // ignore: cast_nullable_to_non_nullable
     final boundary = screenShotKey.currentContext!.findRenderObject()
         as RenderRepaintBoundary;
     screenShot = await boundary.toImage(pixelRatio: ui.window.devicePixelRatio);
